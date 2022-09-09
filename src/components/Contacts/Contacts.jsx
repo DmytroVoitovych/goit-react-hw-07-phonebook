@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { ListCon } from './Contacts.styled';
 
+
 export const Contacts = ({ contacts, away }) => {
+
     return (<ListCon>
         {contacts.map((contact, index) => <li key={contact.id}>
-            {contact.name}: {contact.number} <button type="button" onClick={()=> away(index) } >delete</button>
+            {contact.name}: {contact.number} <button type="button" onClick={()=> away(index, contact.backId) } >delete</button>
         </li>)}
     </ListCon>)
 };

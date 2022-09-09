@@ -1,16 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { valueSlicePersist } from './slice';
-import { persistStore,FLUSH,REHYDRATE,PAUSE,PERSIST,PURGE,REGISTER, } from 'redux-persist';
-
+import { configureStore, } from '@reduxjs/toolkit';
+import  valueSlice from './slice';
 
 export const store = configureStore({
-    reducer: { book: valueSlicePersist },
-    middleware(getDefaultMiddleware) { // добавляем исключения
-       return getDefaultMiddleware({
-            serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-            },
-        })
-    },
+    reducer: { book: valueSlice.reducer },
+    middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
-export let persistor = persistStore(store);

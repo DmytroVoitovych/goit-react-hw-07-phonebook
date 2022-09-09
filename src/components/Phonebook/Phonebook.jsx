@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import { Form, Button } from './Phonebook.styled';
+import { statusAxios } from 'Redux/slice';
+import { useSelector } from 'react-redux';
 
 export const Phonebook = ({ input, val, btn }) => {
+  const status = useSelector(statusAxios);
  
   return  <div>
         <h2>Phonebook</h2>
@@ -28,7 +31,7 @@ export const Phonebook = ({ input, val, btn }) => {
               value={val.tel}
               
 />            
-            <Button type="submit">Add contact</Button>
+            <Button type="submit">{status?'Add contact':'Loading...'}</Button>
         </Form>
   </div>  
 };
